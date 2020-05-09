@@ -3,6 +3,9 @@ var weatherAPI = "api.openweathermap.org/data/2.5/weather?"
 var fiveDayForecast = "api.openweathermap.org/data/2.5/forecast?q=";
 var uvAPI = "http://api.openweathermap.org/data/2.5/uvi?lat=";
 var searchCity = ["Minneapolis","Austin", "Chicago", "New York", "Orlando", "San Franciso"];
+var lon = "longitude";
+var lat = "latidtude";
+
 
 
 
