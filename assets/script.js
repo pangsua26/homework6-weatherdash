@@ -16,7 +16,8 @@ $(document).ready(function() {
 function returnCity(city) {
     var button = $("<button>");
     button.addClass("city-btn btn btn-default");
-   
+    button.attr("data-name", city);
+    
 }
 
 $("#search-button").on("click", function (event) {
