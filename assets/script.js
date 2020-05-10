@@ -19,9 +19,9 @@ $(document).ready(function() {
     // function to add current day to city name container
     var currentDay = moment().format("dddd MMMM Do");
     $("#city-name").text(currentDay);
-    // console.log(currentDay);
-        
+    // console.log(currentDay);      
 })
+
 
 function returnCity(city) {
     var button = $("<button>");
@@ -38,5 +38,8 @@ $("#search-button").on("click", function (event) {
 
     cities.push($weather);
     localStorage.setItem("weather", JSON.stringify(cities))
-          
+    
+    returnCity($weather);
+    displayWeatherInfo($weather);
+
 });
