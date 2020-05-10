@@ -13,7 +13,10 @@ $(document).ready(function() {
     // console.log(currentDay);
 })
 
-
+$("#searchBtn").on("click", function (event) {
+    event.preventDefault();
+  
+});
 
 
 
