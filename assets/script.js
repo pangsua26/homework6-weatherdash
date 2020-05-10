@@ -19,22 +19,27 @@ $(document).ready(function() {
     // function to add current day to city name container
     var currentDay = moment().format("dddd MMMM Do");
     $("#city-name").text(currentDay);
-    // console.log(currentDay);      
+    console.log(currentDay);   
 })
 
 function displayWeatherInfo(city) {
-    var APIKey = "166a433c57516f51dfab1f7edaed8413";
+    var apiKey = "31be87001622c83535cd8f39b27eb25b";
 
-    var queryURL = "api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIKey;
+    // var queryURL = "api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
 
-    $.ajax({url: queryURL, method: "GET"})
-    .then(function (response){
+    var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${apiKey}&units=imperial`;
+
+    $.ajax({
+        url: queryURL, 
+        method: "GET"
+    }).then(function (response){
+        var infoReturn = response;
+        console.log(infoReturn);
         
     })
 
-
-
 }
+
 
 function returnCity(city) {
     var button = $("<button>");
@@ -49,8 +54,8 @@ $("#search-button").on("click", function (event) {
 
     var $weather = $("#search-input").val().trim();
 
-    cities.push($weather);
-    localStorage.setItem("weather", JSON.stringify(cities))
+    searchCity.push($weather);
+    localStorage.setItem("weather", JSON.stringify(searchCity))
     
     returnCity($weather);
     displayWeatherInfo($weather);
