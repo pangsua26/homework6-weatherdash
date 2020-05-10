@@ -13,16 +13,19 @@ $(document).ready(function() {
     // console.log(currentDay);
 })
 
+function returnCity(city) {
+    var button = $("<button>");
+    
+}
 
 $("#search-button").on("click", function (event) {
     event.preventDefault();
 
-    let $weather = $("#search-input").val().trim();
+    var $weather = $("#search-input").val().trim();
 
     cities.push($weather);
     localStorage.setItem("weather", JSON.stringify(cities))
-    
-      
+          
 });
 
 
