@@ -8,7 +8,7 @@ The purpose of this activity is to create a create a weather dashboard so the us
 This activity was exceptionally difficult for a number of reasons:
 1. I could not get the weather API to work using multiple api keys. 
 2. I would get a function or code to show correctly in the console but then later on, it would no longer work. (This happened continously and I could not figure out why even when I back-tracked.)
-3. Given the timeframe and overlap with Project 1 activities, for me, I felt like more time was needed in order to fully research. 
+3. Given the timeframe and overlap with Project 1 activities, for me, I felt like more time was needed.
 
 Overall, I definitely fee like I am behind on the learning curve and will make more of an effort to start earlier and to ask more questions.
 
