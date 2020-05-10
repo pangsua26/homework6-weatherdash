@@ -6,6 +6,11 @@ var searchCity = ["Minneapolis","Austin", "Chicago", "New York", "Orlando", "San
 var lon = "longitude";
 var lat = "latidtude";
 
+$(document).ready(function() {
+    var currentDay = moment().format("dddd MMMM Do");
+    $("#city-name").text(currentDay);
+    console.log(currentDay);
+})
 
 
 
