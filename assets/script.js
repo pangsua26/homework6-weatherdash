@@ -1,3 +1,5 @@
+$(document).ready(function() {
+
 var fiveDayForecast = "api.openweathermap.org/data/2.5/forecast?q=";
 var uvAPI = "http://api.openweathermap.org/data/2.5/uvi?lat=";
 var searchCity = ["Minneapolis","Austin", "Chicago", "New York", "Orlando", "San Franciso"];
@@ -14,12 +16,12 @@ searchCity.forEach(function (city, index, originalArr) {
     console.log(city);
 })
 
-$(document).ready(function() {
+
     // function to add current day to city name container
     var currentDay = moment().format("dddd MMMM Do");
     $("#city-name").text(currentDay);
     console.log(currentDay);   
-})
+
 
 // function to display city weather information
 function displayWeatherInfo(city) {
@@ -72,3 +74,4 @@ $("#search-button").on("click", function (event) {
     displayWeatherInfo($weather);
 
 });
+})
