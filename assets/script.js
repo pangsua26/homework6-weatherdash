@@ -1,10 +1,8 @@
 $(document).ready(function() {
 
     var fiveDayForecast = "api.openweathermap.org/data/2.5/forecast?q=";
-
     var searchCity = ["Minneapolis","Austin", "Chicago", "New York", "Orlando", "San Franciso"];
-    var lon = "longitude";
-    var lat = "latidtude";
+   
 
 // function to display searchCity arrays
     searchCity.forEach(function (city, index, originalArr) {
@@ -25,37 +23,46 @@ $(document).ready(function() {
 
     // function to display city weather information
     function displayWeatherInfo(city) {
+
         var apiKey = "31be87001622c83535cd8f39b27eb25b";
 
         var queryURL = "api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
 
-    // var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${apiKey}&units=imperial";
+        // var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${apiKey}&units=imperial";
 
-    //start of call
-    $.ajax({
-        url: queryURL, 
-        method: "GET"
-    // store 
-    }).then(function (response){
-        console.log(queryURL);
-        console.log(response);
+        //start of call
+        $.ajax({
+            url: queryURL, 
+            method: "GET"
+        // store 
+        }).then(function (response){
+            console.log(queryURL);
+            console.log(response);
 
-        $("#city-name").text(response.name);
-        $("#temperature").text("Temperature (K) " + response.main.temp);
-        $("#humidity")..text("Humidity: " + response.main.humidity);
-        $("#wind-speed").text("Wind Speed: " + response.wind.speed);
+            $("#city-name").text(response.name);
+            $("#temperature").text("Temperature (K) " + response.main.temp);
+            $("#humidity")..text("Humidity: " + response.main.humidity);
+            $("#wind-speed").text("Wind Speed: " + response.wind.speed);
 
-        uvIndex(response.coord.lon,response.coord.lat);
-        
+            uvIndex(response.coord.lon,response.coord.lat)
        
     })
-
 }
 
     function uvIndex(lon, lat) {
         var apiKey = "31be87001622c83535cd8f39b27eb25b";
         var queryURL = "http://api.openweathermap.org/data/2.5/uvi/forecast?appid="+ apiKey + "&lat="+ lat + "&lon=" + lon;
         console.log(queryURL);
+
+        $.ajax({
+            url: queryURL, 
+            method: "GET"
+        // store 
+        }).then(function (response){
+            console.log(queryURL);
+            console.log(response);
+            $("#uv-index").text("UV Index: " + response());
+        })
 
     }
 
