@@ -59,6 +59,13 @@ function returnCity(city) {
     $(".search-city-array").append(button);
 }
 
+$(".search-city-array").on("click", ".city-btn", function() {
+    var buttonVal = $(this).val().trim();
+    console.log(buttonVal);
+    displayWeatherInfo(buttonVal);
+
+})
+
 // Listerner on search button
 $("#search-button").on("click", function (event) {
     event.preventDefault();
