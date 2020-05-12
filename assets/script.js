@@ -40,9 +40,9 @@ function displayWeatherInfo(city) {
         console.log(queryURL);
         console.log(response);
 
-        // $("#temperature").text("Temperature (K) " + response.main.temp);
-        // $("#humidity")..text("Humidity: " + response.main.humidity);
-        // $("#wind-speed").text("Wind Speed: " + response.wind.speed);
+        $("#temperature").text("Temperature (K) " + response.main.temp);
+        $("#humidity")..text("Humidity: " + response.main.humidity);
+        $("#wind-speed").text("Wind Speed: " + response.wind.speed);
         
        
     })
