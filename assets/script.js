@@ -60,7 +60,7 @@ $(document).ready(function() {
         }).then(function (response){
             console.log(queryURL);
             console.log(response);
-            $("#uv-index").text("UV Index: " + response());
+            $("#uv-index").text("UV Index: " + response(uvIndex));
         })
     
     }
