@@ -54,6 +54,7 @@ function returnCity(city) {
     var button = $("<button>");
     button.addClass("city-btn btn btn-default").css("display", "block");
     button.attr("data-name", city);
+    button.attr("value", city);
     button.text(city);
     $(".search-city-array").append(button);
 }
