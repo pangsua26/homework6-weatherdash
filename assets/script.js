@@ -1,9 +1,7 @@
 $(document).ready(function() {
 
-    var fiveDayForecast = "api.openweathermap.org/data/2.5/forecast?q=";
-    var searchCity = ["Minneapolis","Austin", "Chicago", "New York", "Orlando"];
-    
-    
+   var searchCity = ["Minneapolis","Austin", "Chicago", "New York", "Orlando"];
+      
     // function to display searchCity arrays
     searchCity.forEach(function (city, index, originalArr) {
         returnCity(city);
@@ -35,14 +33,18 @@ $(document).ready(function() {
         }).then(function (response){
             console.log(queryURL);
             console.log(response);
-               
+            
             $("#city-name").text(response.name) + currentDay;
             $("#temperature").text("Temperature (K) " + response.main.temp);
             $("#humidity").text("Humidity: " + response.main.humidity);
             $("#wind-speed").text("Wind Speed: " + response.wind.speed);
           
-            uvIndex(response.coord.lon,response.coord.lat);
-            
+            // uvIndex(response.coord.lon,response.coord.lat);
+
+            var lat = current.coord.lat;
+            var lon = current.coord.lon; 
+            uvIndex(lat,lon);
+            fiveDayForecast(lat,lon);
         
         })
     }
@@ -51,7 +53,7 @@ $(document).ready(function() {
     function uvIndex(lon, lat) {
         var apiKey = "31be87001622c83535cd8f39b27eb25b";
         var queryURL = "http://api.openweathermap.org/data/2.5/uvi/forecast?appid="+ apiKey + "&lat="+ lat + "&lon=" + lon;
-        console.log(queryURL);
+        // console.log(queryURL);
     
         $.ajax({
             url: queryURL, 
@@ -64,9 +66,16 @@ $(document).ready(function() {
             $("#uv-index").text("UV Index: " + response(uvIndex));
             
         })
-    
     }
     
+    function fiveDayForecast(lon, lat) {
+        $("#forecast_weather").empty();
+        var fiveDayForecast = "https://api.openweathermap.org/data/2.5/forecast?cnt=40&units=imperial&lat=" + lat + "&lon=" + lon +"&APPID=31be87001622c83535cd8f39b27eb25b"
+        
+    }
+
+
+
     // function to create buttons on city names to return weather information
     function returnCity(city) {
         var button = $("<button>");
