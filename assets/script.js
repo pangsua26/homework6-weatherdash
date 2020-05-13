@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
 
     var fiveDayForecast = "api.openweathermap.org/data/2.5/forecast?q=";
@@ -36,17 +35,13 @@ $(document).ready(function() {
         }).then(function (response){
             console.log(queryURL);
             console.log(response);
-            var lat = response.coord.lat;
-            var lon = response.coord.lon;
-            uvIndex(lat, lon);
-            fiveDayForecast(lat,lon);
-    
+               
             $("#city-name").text(response.name) + currentDay;
             $("#temperature").text("Temperature (K) " + response.main.temp);
             $("#humidity").text("Humidity: " + response.main.humidity);
             $("#wind-speed").text("Wind Speed: " + response.wind.speed);
           
-            
+            uvIndex(response.coord.lon,response.coord.lat);
             
         
         })
@@ -66,7 +61,7 @@ $(document).ready(function() {
             console.log(queryURL);
             console.log(response);
            
-            
+            $("#uv-index").text("UV Index: " + response(uvIndex));
             
         })
     
@@ -108,4 +103,3 @@ $(document).ready(function() {
     
     });
 })
-    
