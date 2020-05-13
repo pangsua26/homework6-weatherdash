@@ -69,9 +69,17 @@ $(document).ready(function() {
     }
     
     function fiveDayForecast(lon, lat) {
-        $("#forecast_weather").empty();
-        var fiveDayForecast = "https://api.openweathermap.org/data/2.5/forecast?cnt=40&units=imperial&lat=" + lat + "&lon=" + lon +"&APPID=31be87001622c83535cd8f39b27eb25b"
-        
+       
+        var fiveDayQuery = "https://api.openweathermap.org/data/2.5/forecast?cnt=40&units=imperial&lat=" + lat + "&lon=" + lon +"&APPID=31be87001622c83535cd8f39b27eb25b"
+
+        $.ajax({
+            url: fiveDayQuery,
+            method: "GET"
+        })
+        .then(function() {
+           
+            
+        });
     }
 
 
