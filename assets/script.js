@@ -31,20 +31,20 @@ $(document).ready(function() {
             method: "GET"
         // store 
         }).then(function (response){
-            console.log(queryURL);
-            console.log(response);
+            // console.log(queryURL);
+            // console.log(response);
             
             $("#city-name").text(response.name) + currentDay;
             $("#temperature").text("Temperature (K) " + response.main.temp);
             $("#humidity").text("Humidity: " + response.main.humidity);
             $("#wind-speed").text("Wind Speed: " + response.wind.speed);
           
-            // uvIndex(response.coord.lon,response.coord.lat);
+            uvIndex(response.coord.lon,response.coord.lat);
 
-            var lat = current.coord.lat;
-            var lon = current.coord.lon; 
-            uvIndex(lat,lon);
-            fiveDayForecast(lat,lon);
+            var lon = response.coord.lon;
+            var lat = response.coord.lat; 
+            // uvIndex(lat,lon);
+            fiveDayForecast(lon,lat);
         
         })
     }
@@ -60,10 +60,10 @@ $(document).ready(function() {
             method: "GET"
         // store 
         }).then(function (response){
-            console.log(queryURL);
-            console.log(response);
+            // console.log(queryURL);
+            // console.log(response);
            
-            $("#uv-index").text("UV Index: " + response(uvIndex));
+            $("#uv-index").text("UV Index: " + response[0].value);      
             
         })
     }
@@ -76,7 +76,47 @@ $(document).ready(function() {
             url: fiveDayQuery,
             method: "GET"
         })
-        .then(function() {
+        .then(function(response) {
+            console.log(response);
+            console.log(fiveDayQuery);
+            var forecastWeather = $("#forecast-weather");
+            forecastWeather.empty();
+
+            for (var i = 0; i < response.list.length; i++) {
+            
+                var time = response.list[i].dt_txt.indexOf("12:00:00");
+
+                if (time !== -1) {
+                    console.log(time);
+                    console.log(response.list[i])
+
+                    var dateTime = new Date(response.list[i].dt_txt).toLocaleDateString();
+                    var weatherIcon = $("<img>");
+                    var cardBody = $("<div>").addClass("card-body");
+                    var cardTemp = $("<p>").addClass("card-text");
+                    var cardHumid = $("<p>").addClass("card-text");
+                    var cardClass = $("<div>").addClass("card");
+                    var cardTitle = $("<p>").addClass("card-title");
+                    cardTitle.text(dateTime);
+                    
+                    weatherIcon.attr("src", "http://openweathermap.org/img/wn/"+ response.list[i].weather[0].icon + ".png");
+                    cardTemp.text("Temp: " + response.list[i].main.temp);
+                    cardHumid.text("Humidity: " + response.list[i].main.humidity);
+                    cardBody.addClass("bg-primary");
+                    cardBody.append(cardTitle);
+                    cardBody.append(cardTemp);
+                    cardBody.append(cardHumid);
+                    cardBody.append(weatherIcon);
+                    cardClass.append(cardBody);
+
+                  
+                    
+                }
+                forecastWeather.append(cardClass);
+            }
+
+            
+        
            
             
         });
